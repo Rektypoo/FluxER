@@ -17,9 +17,10 @@ echo -e "$blue" "by MrBlackx/TheMasterCH"
 echo -e "$purple" "modified by 0n1cOn3"
 
 prepare_environment() {
-  # No need to set up storage on Alpine Linux
-  apk add git curl python2 python3 -y
-  clear
+  # No need to set up storage on iSH
+  # No need to install Termux-specific packages like git, curl, python2, python3
+  # iSH already has wget and bash
+  # No need to clear the screen on iSH
 }
 
 prepare_environment_2() {
@@ -28,7 +29,7 @@ prepare_environment_2() {
   wget https://raw.githubusercontent.com/tuanpham-dev/termux-ubuntu/master/ubuntu.sh
   chmod +x ubuntu.sh
   bash ubuntu.sh
-  clear
+  # No need to clear the screen on iSH
 }
 
 install_environment() {
@@ -39,7 +40,7 @@ install_environment() {
   echo -e "$purple" "==============================================================="
   chmod +rwx ubuntu.sh
   ./ubuntu.sh
-  clear
+  # No need to clear the screen on iSH
   echo -e "$purple" "Successfully installed!"
   sleep 3
   ./start-ubuntu.sh
