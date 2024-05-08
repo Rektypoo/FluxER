@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 # Created by MrBlackX/TheMasterCH
 # Actual maintainer: 0n1cOn3
 # Version 0.6
 
 # Install dependencies
-pkg install figlet -y &> /dev/null
+apk add figlet git curl python2 python3 tar wget bash -y > /dev/null
 
 # Get colors ready
 red='\e[1;31m'
@@ -17,14 +17,14 @@ echo -e "$blue" "by MrBlackx/TheMasterCH"
 echo -e "$purple" "modified by 0n1cOn3"
 
 prepare_environment() {
-  termux-setup-storage
-  apt install git curl python2 python3 -y
+  # No need to set up storage on Alpine Linux
+  apk add git curl python2 python3 -y
   clear
 }
 
 prepare_environment_2() {
-  apt install figlet wget proot tar curl -y
-  # new Repo needs to be used cause the owner seems to discontinue the project (Readonly)wget https://raw.githubusercontent.com/Neo-Oli/termux-ubuntu/master/ubuntu.sh
+  apk add figlet wget proot tar curl -y
+  # Use new repository for Ubuntu setup
   wget https://raw.githubusercontent.com/tuanpham-dev/termux-ubuntu/master/ubuntu.sh
   chmod +x ubuntu.sh
   bash ubuntu.sh
@@ -43,10 +43,11 @@ install_environment() {
   echo -e "$purple" "Successfully installed!"
   sleep 3
   ./start-ubuntu.sh
-  apt-get update
-  apt-get upgrade -y
-  apt-get install git net-tools wireless_tools aircrack-ng xterm isc-dhcp-server reaver ettercap ettercap-text-only ettercap-graphical dsniff hostapd iptables bully ssltrip unzip expect expect-dev lighttpd hashcat pixiewps curl pip pip3 iwconfig php-cgi -y
-  dhcpd -y
+  apk update
+  apk upgrade -y
+  apk add git net-tools wireless-tools aircrack-ng xterm dhcp hostapd iptables ettercap dsniff reaver bully ssltrip unzip expect lighttpd hashcat pixiewps curl python3 php7 -y
+  # DHCP server installation command might be different, ensure to verify
+  # dhcpd -y
   git clone https://www.github.com/FluxionNetwork/fluxion.git
   cd fluxion && chmod +rwx *
   ./fluxion.sh
